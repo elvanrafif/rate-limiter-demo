@@ -1,7 +1,7 @@
 # Rate Limiter Demo
 
-**Live demo:** [Try it here](https://your-demo-domain.example) *(replace this placeholder after deploying)*  
-**Source:** [GitHub repository](https://github.com/your-username/rate-limiter-demo) *(replace `your-username` with your GitHub account)*
+**Demo:** Run locally with Docker Compose.
+**Source:** [GitHub repository](https://github.com/elvanrafif/rate-limiter-demo)
 
 A small Express API and static browser UI for comparing three Redis-backed rate limiting algorithms. Each browser receives a separate client ID stored in `localStorage`; the fixed limit is 10 requests per 60 seconds.
 
@@ -54,13 +54,5 @@ For example, with Redis installed locally, run `redis-server --port 6379 --save 
 | --- | --- | --- |
 | `PORT` | `3000` | App listen port. Compose maps this host port to the same container port. |
 | `REDIS_URL` | `redis://127.0.0.1:6379` | Redis connection URL; Compose sets it to `redis://redis:6379`. |
-
-## Deploy with Coolify
-
-1. Push this repository to GitHub and create a **Docker Compose** resource in Coolify.
-2. Set the repository and Compose file to `docker-compose.yml`.
-3. Attach a domain only to the `app` service, on the port configured by `PORT` (default `3000`). Do not expose the `redis` service.
-4. Set `PORT` to `3000` unless you also update the app's internal port mapping; the Compose file maps the selected value on both sides.
-5. Deploy. Coolify's app health check calls `/api/health`; verify the domain loads the demo and send requests to each algorithm.
 
 The `x-client-id` header identifies a demo client, not an authenticated user. Anyone can choose a different ID; this project demonstrates rate limiter mechanics, not an abuse-resistant public API.
