@@ -48,7 +48,7 @@
 - `Dockerfile`, `docker-compose.yml`, `.dockerignore`: image app dan Redis lokal.
 - `README.md`: algoritma, setup, API, test dan panduan Coolify.
 
-## Tugas 1: Scaffolding, koneksi Redis, dan health endpoint
+## Task 1: Scaffolding, koneksi Redis, dan health endpoint
 
 **File:** `package.json`, `package-lock.json`, `.gitignore`, `src/redis.js`, `src/server.js`, `tests/api.test.js`
 
@@ -58,7 +58,7 @@
 - [ ] Tulis tes `health_is_live_without_redis_ping`: health merespons 200 tanpa memerlukan Redis.
 - [ ] Jalankan `npm test` dan pastikan lulus; jalankan server dengan Redis aktif dan verifikasi `GET /api/health` menggunakan `curl`.
 
-## Tugas 2: Limiter, middleware, demo API, dan reset
+## Task 2: Limiter, middleware, demo API, dan reset
 
 **File:** `src/limiters/*.js`, `src/rateLimit.js`, `src/server.js`, `tests/limiters.test.js`, `tests/api.test.js`
 
@@ -75,7 +75,7 @@
 - [ ] Tangani Redis error dengan 503 JSON, tanpa unhandled rejection; health endpoint tetap 200 saat Redis tak tersedia.
 - [ ] Jalankan `npm test` dan pastikan seluruh tes limiter/API lulus.
 
-## Tugas 3: UI satu halaman
+## Task 3: UI satu halaman
 
 **File:** `public/index.html`, `public/style.css`, `public/app.js`, `src/server.js`
 
@@ -85,7 +85,7 @@
 - [ ] Render hasil 200/429, kuota, waktu, serta `Retry-After` bila tersedia; tampilkan error jaringan/503 secara terbaca.
 - [ ] Verifikasi manual pada desktop dan viewport ponsel; cek tab, request tunggal, batch 15, reset, dan tidak ada error console.
 
-## Tugas 4: Docker dan dokumentasi menjalankan/deploy
+## Task 4: Docker dan dokumentasi menjalankan/deploy
 
 **File:** `Dockerfile`, `docker-compose.yml`, `.dockerignore`, `README.md`
 
