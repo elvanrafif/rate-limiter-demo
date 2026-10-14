@@ -28,8 +28,13 @@ UI memakai teks bahasa Inggris sesuai PRD. Komunikasi dan dokumentasi desain ini
 rate-limiter-demo/
 ├─ src/
 │  ├─ server.js
+│  ├─ app.js
 │  ├─ redis.js
 │  ├─ rateLimit.js
+│  ├─ routes/
+│  │  └─ apiRoutes.js
+│  ├─ controllers/
+│  │  └─ apiController.js
 │  └─ limiters/
 │     ├─ fixedWindow.js
 │     ├─ slidingLog.js

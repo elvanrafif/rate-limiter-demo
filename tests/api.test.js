@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
 import { createServer } from 'node:http';
-import app from '../src/server.js';
+import app from '../src/app.js';
 import redis from '../src/redis.js';
 import { randomUUID } from 'node:crypto';
 
