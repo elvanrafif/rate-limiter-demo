@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f4f6f5">
+    <meta name="description" content="Compare three Redis-backed rate limiting algorithms with live requests.">
+    <title>Rate Limiter Demo</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <main class="page-shell" id="main-content">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span> INTERACTIVE API DEMO</p>
+          <h1>Rate limiter <span>lab</span></h1>
+          <p class="intro">See how three Redis-backed algorithms decide which requests get through.</p>
+        </div>
+        <a class="repo-link" href="https://github.com/your-username/rate-limiter-demo" target="_blank" rel="noreferrer">
+          View source <span aria-hidden="true">↗</span>
+        </a>
+      </header>
+
+      <section class="demo-card" aria-labelledby="algorithm-heading">
+        <div class="section-heading">
+          <div>
+            <p class="step-label">01 / CHOOSE A STRATEGY</p>
+            <h2 id="algorithm-heading">Rate limiting algorithm</h2>
+          </div>
+          <span class="limit-chip">10 requests <span aria-hidden="true">/</span> 60 sec</span>
+        </div>
+
+        <div class="algorithm-tabs" role="group" aria-label="Choose rate limiting algorithm">
+          <button class="algorithm-tab is-active" type="button" data-algorithm="fixed-window" aria-pressed="true">Fixed Window</button>
+          <button class="algorithm-tab" type="button" data-algorithm="sliding-log" aria-pressed="false">Sliding Log</button>
+          <button class="algorithm-tab" type="button" data-algorithm="token-bucket" aria-pressed="false">Token Bucket</button>
+        </div>
+
+        <p class="algorithm-description" id="algorithm-description" aria-live="polite"></p>
+
+        <div class="request-layout">
+          <div class="request-actions" aria-label="Request controls">
+            <button class="button button-primary" id="send-one" type="button">
+              <span class="button-icon" aria-hidden="true">＋</span> Send request
+            </button>
+            <button class="button button-secondary" id="send-batch" type="button">Send 15 at once</button>
+            <button class="button button-reset" id="reset" type="button">Reset quota</button>
+          </div>
+
+          <div class="quota-panel" aria-live="polite">
+            <div class="quota-copy">
+              <span class="step-label">YOUR CURRENT QUOTA</span>
+              <strong id="quota-label">10 / 10 remaining</strong>
+            </div>
+            <div class="progress-track" role="progressbar" aria-label="Requests remaining" aria-valuemin="0" aria-valuemax="10" aria-valuenow="10" id="quota-progress">
+              <span class="progress-fill" id="quota-fill"></span>
+            </div>
+          </div>
+        </div>
+        <p class="request-error" id="request-error" role="alert" hidden></p>
+      </section>
+
+      <section class="results-section" aria-labelledby="results-heading">
+        <div class="section-heading results-heading">
+          <div>
+            <p class="step-label">02 / LIVE RESPONSE LOG</p>
+            <h2 id="results-heading">Recent requests <span class="result-count" id="result-count">0</span></h2>
+          </div>
+          <span class="latest-label"><span class="status-dot" aria-hidden="true"></span> NEWEST FIRST</span>
+        </div>
+        <ol class="result-list" id="result-list" aria-live="polite" aria-relevant="additions">
+          <li class="empty-state" id="empty-state">
+            <span class="empty-mark" aria-hidden="true">↳</span>
+            <span>Your requests will appear here.</span>
+            <span class="empty-hint">Choose an algorithm, then send a request to get started.</span>
+          </li>
+        </ol>
+      </section>
+
+      <footer class="page-footer">
+        <span>Each browser gets its own client ID.</span>
+        <span class="footer-separator" aria-hidden="true">·</span>
+        <span>Powered by Express + Redis</span>
+      </footer>
+    </main>
+  </body>
+</html>

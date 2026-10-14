@@ -1,4 +1,5 @@
 import { createServer } from 'node:http';
+import { fileURLToPath } from 'node:url';
 import { pathToFileURL } from 'node:url';
 import express from 'express';
 import redis from './redis.js';
@@ -40,6 +41,8 @@ app.use((error, _req, res, _next) => {
   console.error('Request failed:', error.message);
   res.status(503).json({ error: 'Rate limiter unavailable' });
 });
+
+app.use(express.static(fileURLToPath(new URL('../public/', import.meta.url))));
 
 export default app;
 

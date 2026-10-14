@@ -81,6 +81,19 @@ describe('GET /api/health', () => {
     }
   });
 
+  it('serves the demo page and static assets', async () => {
+    const page = await fetch(baseUrl);
+    const html = await page.text();
+    const css = await fetch(`${baseUrl}/style.css`);
+    const js = await fetch(`${baseUrl}/app.js`);
+
+    expect(page.status).toBe(200);
+    expect(html).toContain('Rate Limiter Demo');
+    expect(html).toContain('Send 15 at once');
+    expect(css.status).toBe(200);
+    expect(js.status).toBe(200);
+  });
+
   it('returns 503 when Redis is unavailable', async () => {
     const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
     redis.disconnect();
