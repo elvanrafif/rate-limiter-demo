@@ -20,6 +20,7 @@ const errorMessage = document.querySelector('#request-error');
 const buttons = [...document.querySelectorAll('.request-actions button')];
 let activeAlgorithm = 'fixed-window';
 let results = [];
+const quotas = Object.fromEntries(Object.keys(algorithms).map((algorithm) => [algorithm, 10]));
 
 description.textContent = algorithms[activeAlgorithm];
 
@@ -32,7 +33,7 @@ tabs.forEach((tab) => {
       item.setAttribute('aria-pressed', String(selected));
     });
     description.textContent = algorithms[activeAlgorithm];
-    updateQuota(10);
+    updateQuota(quotas[activeAlgorithm]);
   });
 });
 
@@ -101,7 +102,8 @@ function addResult({ response, body, date }, algorithm) {
   };
   results.unshift(result);
   results = results.slice(0, 50);
-  updateQuota(result.remaining);
+  quotas[algorithm] = result.remaining;
+  updateQuota(quotas[activeAlgorithm]);
   renderResults();
 }
 
@@ -137,6 +139,7 @@ document.querySelector('#reset').addEventListener('click', () => withBusy(async 
   });
   const body = await response.json();
   if (!response.ok) throw new Error(body.error || `Reset failed (${response.status})`);
-  updateQuota(10);
+  Object.keys(quotas).forEach((algorithm) => { quotas[algorithm] = 10; });
+  updateQuota(quotas[activeAlgorithm]);
   errorMessage.hidden = true;
 }));
