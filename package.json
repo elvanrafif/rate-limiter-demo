@@ -1,0 +1,18 @@
+{
+  "name": "rate-limiter-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "ioredis": "^5.6.1"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.11"
+  }
+}
